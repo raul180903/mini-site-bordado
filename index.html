@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bordados delicados feitos à mão, personalizados com carinho." />
+  <title>Flor de Linha | Bordados feitos com carinho</title>
+  <style>
+    :root {
+      --cream: #fffaf5;
+      --pink: #f4dfe1;
+      --rose: #b96f7b;
+      --rose-dark: #8d4e5a;
+      --sage: #dce7d9;
+      --sage-dark: #617a63;
+      --ink: #493c3b;
+      --muted: #807170;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(105, 73, 72, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; font-family: 'Trebuchet MS', Arial, sans-serif; color: var(--ink); background: var(--cream); line-height: 1.6; }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    .topbar { background: var(--sage); text-align: center; padding: 8px 14px; color: #4f6851; font-size: .85rem; letter-spacing: .03em; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(255,250,245,.94); backdrop-filter: blur(12px); border-bottom: 1px solid #f0e4df; }
+    .nav { max-width: 1120px; margin: auto; padding: 15px 22px; display: flex; align-items: center; justify-content: space-between; gap: 18px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: Georgia, serif; font-size: 1.35rem; font-weight: bold; color: var(--rose-dark); }
+    .brand-mark { width: 40px; height: 40px; display: grid; place-items: center; background: var(--pink); border-radius: 50%; font-size: 1.35rem; }
+    .navlinks { display: flex; gap: 22px; align-items: center; font-size: .92rem; }
+    .navlinks a:hover { color: var(--rose-dark); }
+    .cart-button, .button { border: 0; cursor: pointer; border-radius: 999px; padding: 11px 18px; font-weight: bold; transition: transform .2s, background .2s; }
+    .cart-button { background: var(--white); color: var(--rose-dark); border: 1px solid #e8cbd0; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: var(--rose); color: white; box-shadow: 0 7px 18px rgba(185,111,123,.18); }
+    .button:hover, .cart-button:hover { transform: translateY(-2px); }
+    .button.secondary { background: var(--sage); color: #49624c; box-shadow: none; }
+    .hero { max-width: 1120px; margin: auto; padding: 56px 22px 60px; display: grid; grid-template-columns: 1.02fr .98fr; gap: 42px; align-items: center; }
+    .eyebrow { display: inline-block; background: #f7e8e8; color: var(--rose-dark); padding: 7px 13px; border-radius: 999px; font-size: .82rem; font-weight: bold; letter-spacing: .04em; }
+    h1, h2, h3 { font-family: Georgia, 'Times New Roman', serif; line-height: 1.16; }
+    h1 { font-size: clamp(2.6rem, 5vw, 4.4rem); margin: 18px 0; letter-spacing: -.04em; }
+    h1 em { color: var(--rose); font-weight: normal; }
+    .hero p { max-width: 510px; color: var(--muted); font-size: 1.07rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 25px; }
+    .hero-note { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 25px; font-size: .85rem; color: var(--muted); }
+    .hero-art { min-height: 390px; position: relative; border-radius: 46% 46% 24px 24px; background: linear-gradient(145deg, #f5e2df, #e8ede2); display: grid; place-items: center; overflow: hidden; }
+    .hero-art:before, .hero-art:after { content: ''; position: absolute; border: 1px solid rgba(185,111,123,.25); border-radius: 50%; width: 290px; height: 290px; }
+    .hero-art:after { width: 360px; height: 360px; }
+    .hoop { width: min(75%, 320px); aspect-ratio: 1; border-radius: 50%; background: #e9c8a9; padding: 13px; box-shadow: var(--shadow); z-index: 1; transform: rotate(-7deg); }
+    .fabric { width: 100%; height: 100%; border-radius: 50%; background: repeating-linear-gradient(0deg, #fff9ef, #fff9ef 3px, #f9f0e4 4px); border: 8px solid #c89c70; display: flex; align-items: center; justify-content: center; flex-direction: column; text-align: center; color: #9b6870; }
+    .fabric .flower { font-size: clamp(4rem, 8vw, 6.2rem); line-height: 1.05; }
+    .fabric strong { font-family: Georgia, serif; font-size: 1.55rem; font-weight: normal; }
+    .fabric small { color: #9c8279; letter-spacing: .12em; text-transform: uppercase; font-size: .65rem; }
+    .floating-tag { position: absolute; z-index: 2; background: white; border-radius: 14px; padding: 12px 15px; box-shadow: var(--shadow); font-size: .85rem; }
+    .tag-one { top: 17%; left: 3%; } .tag-two { bottom: 12%; right: 3%; }
+    section.content { padding: 64px 22px; }
+    .section-inner { max-width: 1120px; margin: auto; }
+    .section-heading { text-align: center; max-width: 650px; margin: 0 auto 30px; }
+    .section-heading h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin: 12px 0; }
+    .section-heading p { color: var(--muted); margin: 0; }
+    .products { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .product-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); border: 1px solid #f2e8e2; display: flex; flex-direction: column; }
+    .product-art { min-height: 190px; display: grid; place-items: center; font-size: 5rem; background: linear-gradient(145deg, #f8e7e8, #f6efe5); }
+    .product-card:nth-child(2) .product-art { background: linear-gradient(145deg, #e5eddf, #f8f0e3); }
+    .product-card:nth-child(3) .product-art { background: linear-gradient(145deg, #eee4f0, #f8eee6); }
+    .product-info { padding: 19px; display: flex; flex-direction: column; flex: 1; }
+    .product-info h3 { font-size: 1.35rem; margin: 0 0 7px; }
+    .product-info p { color: var(--muted); font-size: .92rem; margin: 0 0 16px; flex: 1; }
+    .product-bottom { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+    .price { font-weight: bold; color: var(--rose-dark); font-size: 1.15rem; }
+    .add-btn { border: 0; border-radius: 50%; width: 42px; height: 42px; cursor: pointer; background: var(--sage); color: #49624c; font-size: 1.35rem; }
+    .how { background: #f5eee7; }
+    .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .step { text-align: center; padding: 24px; }
+    .step-icon { margin: 0 auto 13px; width: 58px; height: 58px; border-radius: 50%; background: white; display: grid; place-items: center; font-size: 1.5rem; }
+    .step h3 { margin: 8px 0; font-size: 1.25rem; }
+    .step p { color: var(--muted); font-size: .93rem; }
+    .about-box { display: grid; grid-template-columns: .8fr 1.2fr; gap: 35px; align-items: center; background: white; padding: 32px; border-radius: 25px; box-shadow: var(--shadow); }
+    .about-icon { min-height: 200px; border-radius: 20px; background: var(--pink); display: grid; place-items: center; font-size: 6rem; }
+    .about-box h2 { font-size: 2rem; margin: 0 0 12px; }
+    .about-box p { color: var(--muted); }
+    .contact { text-align: center; background: var(--sage); }
+    .contact h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin: 0 0 12px; }
+    .contact p { color: #5e7160; margin: 0 auto 22px; max-width: 540px; }
+    footer { text-align: center; padding: 25px 20px; font-size: .85rem; color: var(--muted); }
+    .cart-panel { position: fixed; inset: 0; z-index: 30; display: none; }
+    .cart-panel.open { display: block; }
+    .cart-backdrop { position: absolute; inset: 0; background: rgba(40,30,30,.4); }
+    .cart-drawer { position: absolute; right: 0; top: 0; height: 100%; width: min(420px, 100%); background: var(--cream); padding: 24px; overflow: auto; box-shadow: -10px 0 30px rgba(0,0,0,.1); }
+    .cart-header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eaded8; padding-bottom: 14px; }
+    .cart-header h2 { margin: 0; }
+    .close-cart { border: 0; background: transparent; font-size: 1.7rem; cursor: pointer; color: var(--ink); }
+    .cart-items { padding: 15px 0; }
+    .cart-item { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 12px 0; border-bottom: 1px solid #eee3dd; }
+    .cart-item small { display: block; color: var(--muted); }
+    .qty-controls { display: flex; gap: 8px; align-items: center; margin-top: 7px; }
+    .qty-controls button { border: 1px solid #e4d1ce; background: white; border-radius: 8px; width: 27px; height: 27px; cursor: pointer; }
+    .cart-total { display: flex; justify-content: space-between; font-weight: bold; font-size: 1.1rem; margin: 18px 0; }
+    .checkout-form { display: grid; gap: 10px; margin-top: 18px; }
+    .checkout-form label { font-size: .9rem; font-weight: bold; }
+    .checkout-form input { width: 100%; border: 1px solid #e4d5cf; background: white; border-radius: 12px; padding: 12px; outline-color: var(--rose); }
+    .checkout-form .button { width: 100%; }
+    .notice { font-size: .8rem; color: var(--muted); background: #f5eee7; border-radius: 12px; padding: 10px; }
+    .toast { position: fixed; bottom: 20px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: #493c3b; color: white; border-radius: 999px; padding: 11px 18px; z-index: 50; transition: .25s; font-size: .9rem; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    @media (max-width: 760px) {
+      .nav { padding: 12px 16px; } .navlinks { display: none; } .hero { grid-template-columns: 1fr; padding-top: 38px; gap: 28px; } .hero-art { min-height: 330px; }
+      .products, .steps { grid-template-columns: 1fr; } .product-card { max-width: 440px; width: 100%; margin: auto; } .product-art { min-height: 160px; }
+      section.content { padding: 48px 17px; } .about-box { grid-template-columns: 1fr; padding: 22px; } .about-icon { min-height: 140px; font-size: 4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">Feito à mão, ponto por ponto, com muito carinho ♡</div>
+  <header>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="brand" href="#inicio"><span class="brand-mark">🌷</span><span>Flor de Linha<small style="display:block;font:normal .65rem Arial;letter-spacing:.16em">BORDADOS AFETIVOS</small></span></a>
+      <div class="navlinks"><a href="#produtos">Peças</a><a href="#como-funciona">Como pedir</a><a href="#sobre">Nossa história</a></div>
+      <button class="cart-button" id="openCart" aria-label="Abrir carrinho">🛍️ Carrinho (<span id="cartCount">0</span>)</button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div>
+        <span class="eyebrow">BORDADOS PERSONALIZADOS</span>
+        <h1>Pequenos detalhes,<br><em>grandes afetos.</em></h1>
+        <p>Peças bordadas à mão para presentear, decorar e guardar momentos especiais. Escolha seu mimo favorito ou fale com a gente para criar algo único.</p>
+        <div class="hero-actions"><a class="button" href="#produtos">Ver peças ✿</a><a class="button secondary" href="#contato">Personalizar meu pedido</a></div>
+        <div class="hero-note"><span>♡ Feito com carinho</span><span>✿ Personalizável</span><span>📦 Encomendas sob consulta</span></div>
+      </div>
+      <div class="hero-art" aria-label="Ilustração decorativa de bastidor de bordado">
+        <div class="floating-tag tag-one">🌼 Feito à mão</div>
+        <div class="hoop"><div class="fabric"><span class="flower">🌸</span><strong>feito com amor</strong><small>flor de linha</small></div></div>
+        <div class="floating-tag tag-two">♡ Cada ponto conta</div>
+      </div>
+    </section>
+
+    <section class="content" id="produtos">
+      <div class="section-inner">
+        <div class="section-heading"><span class="eyebrow">NOSSA SELEÇÃO</span><h2>Um carinho em forma de bordado</h2><p>Peças ilustrativas para você conhecer nosso estilo. Os valores e a disponibilidade podem ser ajustados.</p></div>
+        <div class="products">
+          <article class="product-card">
+            <div class="product-art" aria-hidden="true">🪡🌷</div>
+            <div class="product-info"><h3>Bastidor floral</h3><p>Um detalhe delicado para decorar seu cantinho favorito.</p><div class="product-bottom"><span class="price">R$ 45,00</span><button class="add-btn" data-id="bastidor" aria-label="Adicionar Bastidor floral ao carrinho">+</button></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-art" aria-hidden="true">🧺🌿</div>
+            <div class="product-info"><h3>Toalhinha bordada</h3><p>Personalizada com inicial, nome ou um pequeno desenho.</p><div class="product-bottom"><span class="price">R$ 32,00</span><button class="add-btn" data-id="toalhinha" aria-label="Adicionar Toalhinha bordada ao carrinho">+</button></div></div>
+          </article>
+          <article class="product-card">
+            <div class="product-art" aria-hidden="true">🎁🧵</div>
+            <div class="product-info"><h3>Presente personalizado</h3><p>Uma lembrança feita especialmente para alguém querido.</p><div class="product-bottom"><span class="price">R$ 59,00</span><button class="add-btn" data-id="presente" aria-label="Adicionar Presente personalizado ao carrinho">+</button></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="content how" id="como-funciona">
+      <div class="section-inner"><div class="section-heading"><span class="eyebrow">SEM COMPLICAÇÃO</span><h2>Como fazer seu pedido</h2><p>Escolha sua peça e a gente conversa sobre os detalhes da sua encomenda.</p></div>
+        <div class="steps">
+          <div class="step"><div class="step-icon">🛍️</div><h3>1. Escolha</h3><p>Adicione ao carrinho as peças que chamaram sua atenção.</p></div>
+          <div class="step"><div class="step-icon">💬</div><h3>2. Combine</h3><p>Envie seu pedido pelo WhatsApp para confirmar cores, nomes e prazo.</p></div>
+          <div class="step"><div class="step-icon">🧵</div><h3>3. Feito para você</h3><p>Confirmamos os detalhes e preparamos sua peça com carinho.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="content" id="sobre">
+      <div class="section-inner"><div class="about-box"><div class="about-icon">🪻</div><div><span class="eyebrow">NOSSA HISTÓRIA</span><h2>Feito devagar, para durar no coração.</h2><p>A Flor de Linha nasceu do amor por trabalhos manuais e por presentes que contam histórias. Cada encomenda é preparada com cuidado, atenção aos detalhes e muito afeto.</p><p><strong>Tem uma ideia especial?</strong> Conte para nós! Vamos pensar juntas em cores, desenhos e acabamentos.</p><a class="button" href="#contato">Conversar sobre uma encomenda</a></div></div></div>
+    </section>
+
+    <section class="content contact" id="contato"><div class="section-inner"><h2>Vamos bordar uma ideia linda?</h2><p>Fale com a gente para tirar dúvidas, consultar prazos ou encomendar uma peça personalizada.</p><a class="button" id="whatsContact" href="#">💬 Falar pelo WhatsApp</a></div></section>
+  </main>
+  <footer>© <span id="year"></span> Flor de Linha · Bordados afetivos feitos com carinho ♡<br><small>Mini site demonstrativo. Edite os produtos, preços e contato antes de publicar.</small></footer>
+
+  <div class="cart-panel" id="cartPanel" aria-hidden="true">
+    <div class="cart-backdrop" id="cartBackdrop"></div>
+    <aside class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-header"><h2 id="cartTitle">Seu carrinho 🧺</h2><button class="close-cart" id="closeCart" aria-label="Fechar carrinho">×</button></div>
+      <div class="cart-items" id="cartItems"><p style="color:var(--muted)">Seu carrinho ainda está vazio.</p></div>
+      <div class="cart-total"><span>Total estimado</span><span id="cartTotal">R$ 0,00</span></div>
+      <div class="notice">Demonstração: o pedido será enviado para o WhatsApp para combinar disponibilidade, entrega e pagamento. Nenhuma cobrança é feita neste site.</div>
+      <form class="checkout-form" id="checkoutForm">
+        <div><label for="customerName">Seu nome</label><input id="customerName" name="customerName" placeholder="Como podemos te chamar?" required /></div>
+        <div><label for="customerNote">Personalização (opcional)</label><input id="customerNote" name="customerNote" placeholder="Ex.: nome, cor, prazo desejado" /></div>
+        <button class="button" type="submit">Finalizar pelo WhatsApp ↗</button>
+      </form>
+    </aside>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Adicionado ao carrinho ♡</div>
+
+  <script>
+    // IMPORTANTE: troque pelo número comercial com código do país e DDD, somente números.
+    // Exemplo Brasil: 5511999999999
+    const WHATSAPP_NUMBER = '5511999999999';
+
+    const products = {
+      bastidor: { name: 'Bastidor floral', price: 45.00 },
+      toalhinha: { name: 'Toalhinha bordada', price: 32.00 },
+      presente: { name: 'Presente personalizado', price: 59.00 }
+    };
+    const cart = {};
+    const cartPanel = document.getElementById('cartPanel');
+    const cartItems = document.getElementById('cartItems');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const toast = document.getElementById('toast');
+    let toastTimer;
+
+    const money = value => value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('show'), 2200);
+    }
+    function addToCart(id) {
+      if (!products[id]) return;
+      cart[id] = (cart[id] || 0) + 1;
+      renderCart();
+      showToast('Adicionado ao carrinho ♡');
+    }
+    function changeQuantity(id, delta) {
+      if (!cart[id]) return;
+      cart[id] += delta;
+      if (cart[id] <= 0) delete cart[id];
+      renderCart();
+    }
+    function renderCart() {
+      const ids = Object.keys(cart);
+      const count = ids.reduce((sum, id) => sum + cart[id], 0);
+      const total = ids.reduce((sum, id) => sum + products[id].price * cart[id], 0);
+      cartCount.textContent = count;
+      cartTotal.textContent = money(total);
+      if (!ids.length) {
+        cartItems.innerHTML = '<p style="color:var(--muted)">Seu carrinho ainda está vazio.</p>';
+        return;
+      }
+      cartItems.innerHTML = ids.map(id => `
+        <div class="cart-item">
+          <div><strong>${products[id].name}</strong><small>${money(products[id].price)} cada</small>
+            <div class="qty-controls"><button type="button" data-action="minus" data-id="${id}" aria-label="Diminuir quantidade">−</button><span>${cart[id]}</span><button type="button" data-action="plus" data-id="${id}" aria-label="Aumentar quantidade">+</button></div>
+          </div><strong>${money(products[id].price * cart[id])}</strong>
+        </div>`).join('');
+    }
+    function openCart() { cartPanel.classList.add('open'); cartPanel.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden'; }
+    function closeCart() { cartPanel.classList.remove('open'); cartPanel.setAttribute('aria-hidden', 'true'); document.body.style.overflow = ''; }
+    function openWhatsApp(message) {
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    document.querySelectorAll('.add-btn').forEach(button => button.addEventListener('click', () => addToCart(button.dataset.id)));
+    document.getElementById('openCart').addEventListener('click', openCart);
+    document.getElementById('closeCart').addEventListener('click', closeCart);
+    document.getElementById('cartBackdrop').addEventListener('click', closeCart);
+    cartItems.addEventListener('click', event => {
+      const button = event.target.closest('button[data-action]');
+      if (!button) return;
+      changeQuantity(button.dataset.id, button.dataset.action === 'plus' ? 1 : -1);
+    });
+    document.getElementById('checkoutForm').addEventListener('submit', event => {
+      event.preventDefault();
+      const ids = Object.keys(cart);
+      if (!ids.length) { showToast('Adicione pelo menos uma peça ao carrinho.'); return; }
+      const name = document.getElementById('customerName').value.trim();
+      const note = document.getElementById('customerNote').value.trim();
+      const lines = ids.map(id => `• ${cart[id]}x ${products[id].name} — ${money(products[id].price * cart[id])}`);
+      const total = ids.reduce((sum, id) => sum + products[id].price * cart[id], 0);
+      const message = `Olá! Meu nome é ${name} e gostaria de consultar este pedido:\n\n${lines.join('\n')}\n\nTotal estimado: ${money(total)}\n${note ? `Personalização/observações: ${note}\n` : ''}\nSei que valores, disponibilidade, entrega e pagamento precisam ser confirmados. Obrigado(a)!`;
+      openWhatsApp(message);
+    });
+    document.getElementById('whatsContact').addEventListener('click', event => {
+      event.preventDefault();
+      openWhatsApp('Olá! Vi o mini site Flor de Linha e gostaria de saber mais sobre os bordados personalizados.');
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+    renderCart();
+  </script>
+</body>
+</html>
